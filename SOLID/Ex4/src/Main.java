@@ -1,10 +1,65 @@
-import java.util.*;
+// import java.util.Arrays;
 
-public class Main {
+// class Main {
+
+//     public static void main(String[] args) {
+
+//         BookingRequest request =
+//                 new BookingRequest(
+//                         "H-7781",
+//                         "DOUBLE",
+//                         Arrays.asList("LAUNDRY", "MESS")
+//                 );
+
+//         PricingFactory factory = new PricingFactory();
+
+//         HostelFeeCalculator calculator =
+//                 new HostelFeeCalculator(factory);
+
+//         FeeResult result =
+//                 calculator.calculate(request);
+
+//         ReceiptPrinter printer =
+//                 new ReceiptPrinter();
+
+//         printer.print(request, result);
+
+//         BookingStore store =
+//                 new BookingStore();
+
+//         store.save(request.bookingId);
+//     }
+// }
+
+import java.util.Arrays;
+
+class Main {
+
     public static void main(String[] args) {
-        System.out.println("=== Hostel Fee Calculator ===");
-        BookingRequest req = new BookingRequest(LegacyRoomTypes.DOUBLE, List.of(AddOn.LAUNDRY, AddOn.MESS));
-        HostelFeeCalculator calc = new HostelFeeCalculator(new FakeBookingRepo());
-        calc.process(req);
+
+        BookingRequest request =
+                new BookingRequest(
+                        "H-7781",
+                        "DOUBLE",
+                        Arrays.asList("LAUNDRY", "MESS")
+                );
+
+        PricingFactory factory = new PricingFactory();
+
+        HostelFeeCalculator calculator =
+                new HostelFeeCalculator(factory);
+
+        FeeResult result =
+                calculator.calculate(request);
+
+        ReceiptPrinter printer =
+                new ReceiptPrinter();
+
+        printer.print(request, result);
+
+        BookingStore store =
+                new BookingStore();
+
+        store.save(request.bookingId);
     }
 }

@@ -1,3 +1,4 @@
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("=== Export Demo ===");
@@ -13,11 +14,17 @@ public class Main {
     }
 
     private static String safe(Exporter e, ExportRequest r) {
-        try {
-            ExportResult out = e.export(r);
-            return "OK bytes=" + out.bytes.length;
-        } catch (RuntimeException ex) {
-            return "ERROR: " + ex.getMessage();
+    try {
+        ExportResult out = e.export(r);
+        String text = new String(out.bytes);
+
+        if (text.startsWith("ERROR:")) {
+            return text;
         }
+
+        return "OK bytes=" + out.bytes.length;
+    } catch (RuntimeException ex) {
+        return "ERROR: " + ex.getMessage();
     }
+}
 }

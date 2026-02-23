@@ -1,10 +1,18 @@
-import java.util.*;
+class ReceiptPrinter {
 
-public class ReceiptPrinter {
-    public static void print(BookingRequest req, Money monthly, Money deposit) {
-        System.out.println("Room: " + LegacyRoomTypes.nameOf(req.roomType) + " | AddOns: " + req.addOns);
-        System.out.println("Monthly: " + monthly);
-        System.out.println("Deposit: " + deposit);
-        System.out.println("TOTAL DUE NOW: " + monthly.plus(deposit));
+    void print(BookingRequest request, FeeResult result) {
+
+        System.out.println("=== Hostel Fee Calculator ===");
+        System.out.println("Room: " + request.roomType +
+                " | AddOns: " + request.addOns);
+
+        System.out.println("Monthly: " +
+                String.format("%.2f", result.monthly));
+
+        System.out.println("Deposit: " +
+                String.format("%.2f", result.deposit));
+
+        System.out.println("TOTAL DUE NOW: " +
+                String.format("%.2f", result.total));
     }
 }
